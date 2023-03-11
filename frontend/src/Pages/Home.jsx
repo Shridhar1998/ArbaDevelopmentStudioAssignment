@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+
 import { arr } from "../images/images";
 import style from "../css/home.module.css";
+import btn from "../css/Button.module.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import ProductPage from "../components/ProductPage";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import Terms from "../components/Terms";
 
 function Home() {
   const [i, setI] = useState(0);
-  const [products, setProducts] = useState([]);
+  const [show, setShow] = useState(false);
 
   const handleLeft = () => {
     if (i == 0) {
@@ -24,61 +29,49 @@ function Home() {
   };
   // console.log(arr);
   useEffect(() => {
-    try {
-      fetch(`https://fakestoreapi.com/products`)
-        .then((res) => res.json())
-        .then((res) => {
-          setProducts(res);
-          console.table(res);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    setShow(true);
   }, []);
 
   return (
-    <div className={style.container}>
-      <div className={style.slider}>
-        <div className={style.mainarrows}>
-          <div className={style.leftarw} onClick={handleLeft}>
-            <FaAngleLeft />
-          </div>
-          <div className={style.rightarw} onClick={handleRight}>
-            <FaAngleRight />
-          </div>
-        </div>
-        <img src={arr[i]} alt={arr[i] + "image"} />
-        <div className={style.arraydiv}>
-          <div className={style.arrayinnerdiv}>
-            {arr?.map((e, ind) =>
-              ind == i ? (
-                <img className={style.thumbimg} src={e} alt={ind} />
-              ) : (
-                <div className={style.thumbdiv}></div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
-      {/* products */}
-      <br />
-      <h3 className={style.heading}>Products</h3>
-      <div className={style.products}>
-        {products?.map((e) => (
-          <div className={style.product}>
-            <div className={style.prodimg}>
-              <img src={e.image} alt="" />
+    <>
+      <div className={style.container}>
+        <div className={style.slider}>
+          <div className={style.mainarrows}>
+            <div className={style.leftarw} onClick={handleLeft}>
+              <FaAngleLeft />
             </div>
-            <div className={style.prodinfo}>
-              <h4 className={style.title}>{e?.title.slice(1, 15)}</h4>
-              <p className={style.desc}>{e?.description.slice(0, 45).toLowerCase()}</p>
-              <p className={style.price}> Rs. {e?.price}</p>
-              <div className={style.addtocart}>Add To Cart</div>
+            <div className={style.rightarw} onClick={handleRight}>
+              <FaAngleRight />
             </div>
           </div>
-        ))}
+          <img src={arr[i]} alt={arr[i] + "image"} />
+          <div className={style.arraydiv}>
+            <div className={style.arrayinnerdiv}>
+              {arr?.map((e, ind) =>
+                ind === i ? (
+                  <img className={style.thumbimg} src={e} alt={ind} />
+                ) : (
+                  <div className={style.thumbdiv}></div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+        {/* products */}
+        <br />
+        <>
+          <ProductPage title="Products" />
+        </>
+        <div className={style.bottomsection}>
+          <Link to="/allproducts">
+            <div className={btn.btmbtn}>
+              All Products <AiOutlineDoubleRight />
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+      {show && <Terms setShow={setShow} />}
+    </>
   );
 }
 

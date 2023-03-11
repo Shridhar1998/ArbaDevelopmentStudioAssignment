@@ -26,7 +26,9 @@ function Signup() {
             <input placeholder="Confirm Password" />
 
             <br />
-            <button type="submit" className={styles.submitbtn}>
+            <button type="submit" className={styles.submitbtn}
+            onClick={()=>{navigate("/login")}}
+            >
               Register
             </button>
           </form>
