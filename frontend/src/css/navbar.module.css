@@ -1,0 +1,60 @@
+.navbar {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  align-items: center;
+  padding: 5px 0;
+}
+/* left navbar */
+.leftnav > button {
+  border: none;
+  background-color: rgb(34, 187, 187);
+  color: white;
+  padding: 5px 25px;
+  border-radius: 5px;
+}
+
+.carticon {
+  font-size: 1.5rem;
+  color: rgb(34, 187, 187);
+}
+
+.cartdiv > span {
+  position: relative;
+
+  padding: 0 3px;
+  font-size: x-small;
+  background-color: rgb(10, 167, 62);
+  border-radius: 50%;
+  left: -5px;
+  top: -15px;
+  color: white;
+}
+/* right nav section */
+.rightnav {
+  display: flex;
+  gap: 1rem;
+}
+/* profile */
+.profile {
+  width: 25px;
+  height: 25px;
+}
+.profile > select {
+  position: relative;
+  top: -25px;
+  left: 3px;
+  z-index: 1;
+  background-color: rgba(251, 253, 255, 0);
+  width: 20px;
+  color: rgba(255, 255, 255, 0);
+  border: none;
+}
+.profile > select > option {
+  color: black;
+}
+.profile > img {
+  width: 100%;
+}

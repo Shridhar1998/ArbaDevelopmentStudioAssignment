@@ -3,6 +3,7 @@
   border: 1px solid black;
   height: 100vh;
   justify-content: space-between;
+  text-align: center;
 }
 .left {
   display: flex;
