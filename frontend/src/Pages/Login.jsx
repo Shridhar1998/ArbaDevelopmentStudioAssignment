@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/signup.module.css";
+import { UserLogin } from "../Store/auth/auth.action";
+
+// username: "mor_2314",
+// password: "83r5^_",
 function Login() {
+  const [data, setdata] = useState({
+    username: "",
+    password: "",
+  });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { auth, token } = useSelector((store) => store.auth);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setdata({ ...data, [name]: value });
+  }
 
   function handleLogin(e) {
-    e.preventDefault()
-    fetch("https://fakestoreapi.com/auth/login", {
-      method: "POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({
-        username: "mor_2314",
-        password: "83r5^_"
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => {alert("login Successfull")
-    navigate("/")
-    });
+    e.preventDefault();
+    if (data.username === "mor_2314" && data.password === "83r5^_") {
+      dispatch(UserLogin(data));
+      navigate("/");
+    } else {
+      alert(
+        `wrong credentials it should be username:"mor_2314", password: "83r5^_"`
+      );
+    }
   }
 
   return (
@@ -37,13 +47,23 @@ function Login() {
           <h2>APP NAME</h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
           <form action="">
-            <input placeholder="Username" />
+            <input
+              placeholder="Username"
+              name="username"
+              onChange={(e) => handleChange(e)}
+            />
 
-            <input placeholder="Password" />
+            <input
+              placeholder="Password"
+              name="password"
+              onChange={(e) => handleChange(e)}
+            />
             <br />
-            <button type="submit" 
-            onClick={(e)=>handleLogin(e)}
-            className={styles.submitbtn}>
+            <button
+              type="submit"
+              onClick={(e) => handleLogin(e)}
+              className={styles.submitbtn}
+            >
               Login
             </button>
           </form>

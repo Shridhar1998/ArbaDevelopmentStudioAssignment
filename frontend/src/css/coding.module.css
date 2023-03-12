@@ -47,3 +47,11 @@
     font-size: 14px;
     margin-top: 0;
 }
+.question{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

@@ -9,3 +9,10 @@
   padding: 5px;
   font-weight: 600;
 }
+.moveright{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+
+}

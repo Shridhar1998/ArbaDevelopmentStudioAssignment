@@ -63,3 +63,11 @@
     color: white;
     border: none;
   }
+
+
+  .empty{
+    margin: 10rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+  }

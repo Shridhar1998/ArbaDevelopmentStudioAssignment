@@ -1,7 +1,11 @@
 import React from "react";
 import style from "../css/Terms.module.css";
 import btn from "../css/Button.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { handleTerms } from "../Store/auth/auth.action";
 export default function Terms({ setShow }) {
+  const dispatch = useDispatch();
+  const { accepted } = useSelector((store) => store.auth);
   return (
     <div className={style.termsdiv}>
       <div className={style.termsContainer}>
@@ -32,8 +36,16 @@ export default function Terms({ setShow }) {
           porro neque magni ptatum!
         </p>
         <div className={style.termsbtns}>
-          <div className={btn.btmbtn}>CANCEL</div>
           <div className={btn.btmbtn} onClick={() => setShow(false)}>
+            CANCEL
+          </div>
+          <div
+            className={btn.btmbtn}
+            onClick={() => {
+              dispatch(handleTerms());
+              setShow(false);
+            }}
+          >
             ACCEPT
           </div>
         </div>

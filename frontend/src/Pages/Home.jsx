@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { arr } from "../images/images";
 import style from "../css/home.module.css";
@@ -6,12 +6,18 @@ import btn from "../css/Button.module.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import ProductPage from "../components/ProductPage";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Terms from "../components/Terms";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [i, setI] = useState(0);
   const [show, setShow] = useState(false);
+
+  const { accepted } = useSelector((store) => store.auth);
+  const navigate = useNavigate();
+
+  // console.log(store, "store");
 
   const handleLeft = () => {
     if (i == 0) {
@@ -29,7 +35,9 @@ function Home() {
   };
   // console.log(arr);
   useEffect(() => {
-    setShow(true);
+    if (!accepted) {
+      setShow(true);
+    }
   }, []);
 
   return (
@@ -49,9 +57,9 @@ function Home() {
             <div className={style.arrayinnerdiv}>
               {arr?.map((e, ind) =>
                 ind === i ? (
-                  <img className={style.thumbimg} src={e} alt={ind} />
+                  <img key={ind} className={style.thumbimg} src={e} alt={ind} />
                 ) : (
-                  <div className={style.thumbdiv}></div>
+                  <div key={ind} className={style.thumbdiv}></div>
                 )
               )}
             </div>
@@ -63,11 +71,9 @@ function Home() {
           <ProductPage title="Products" />
         </>
         <div className={style.bottomsection}>
-          <Link to="/allproducts">
-            <div className={btn.btmbtn}>
-              All Products <AiOutlineDoubleRight />
-            </div>
-          </Link>
+          <div className={btn.btmbtn} onClick={() => navigate("/allproducts")}>
+            All Products <AiOutlineDoubleRight />
+          </div>
         </div>
       </div>
       {show && <Terms setShow={setShow} />}

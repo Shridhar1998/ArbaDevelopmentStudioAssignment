@@ -1,40 +1,28 @@
 import React, { useEffect, useState } from "react";
 import style from "../css/products.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { ImPlus, ImMinus } from "react-icons/im";
+import { AddtoCart, ChangeQuanity, getProducts } from "../Store/product/product.action";
 
 function ProductPage({title}) {
-  const [products, setProducts] = useState([]);
+  const dispatch =useDispatch()
+  const {data}=useSelector(store=>store.products)
+  // console.log(data)
 
   function handleQuantity(id, val) {
-    let arr = products?.map((e) => (e.id === id ? { ...e, quantity: val } : e));
-    setProducts(arr);
+    dispatch(ChangeQuanity(data,id,val))
   }
 
   function addtocart(id) {
-    setProducts(products?.map((e) => (e.id == id ? { ...e, added: true } : e)));
+   dispatch(AddtoCart(data,id))
   }
 
-  useEffect(() => {
-    try {
-      fetch(`https://fakestoreapi.com/products`)
-        .then((res) => res.json())
-        .then((res) => {
-          let arr = res.map((e) =>
-            !e.quantity ? { ...e, quantity: 1, added: false } : e
-          );
-          setProducts(arr);
-          console.table(arr);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
+ 
   return (
     <div>
       <h2 className={style.heading}>{title}</h2>
       <div className={style.products}>
-        {products?.map((e, i) => (
+        {data?.map((e, i) => (
           <div className={style.product} key={i}>
             <div className={style.prodimg}>
               <img src={e.image} alt="" />

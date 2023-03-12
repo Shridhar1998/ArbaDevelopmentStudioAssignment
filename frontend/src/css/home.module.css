@@ -4,19 +4,24 @@
   flex-direction: column;
 }
 .slider {
-  height: 400px;
+  width: 90%;
+  margin: auto;
+  height: 500px;
   position: relative;
+  text-align: center;
 }
 .slider > img {
   /* border: 1px solid red; */
   width: 100%;
   height: 100%;
+
 }
 .leftarw,
 .rightarw {
   position: absolute;
   color: white;
   font-size: 24px;
+
 }
 .leftarw :hover,
 .rightarw :hover {
@@ -30,6 +35,7 @@
 .rightarw {
   top: 50%;
   right: 10px;
+  /* border: 1px solid red; */
 }
 /* array div */
 .arraydiv {

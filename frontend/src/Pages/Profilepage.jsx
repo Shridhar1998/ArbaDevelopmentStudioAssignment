@@ -17,8 +17,8 @@ function Profilepage() {
           src="https://tse2.mm.bing.net/th?id=OIP.Gfp0lwE6h7139625a-r3aAHaHa&pid=Api&P=0"
           alt="Profile"
         />
-        <h3>Shridhar</h3>
-        <p>shrihakke14@gmail.com</p>
+        <h3>abcd</h3>
+        <p>abcd@gmail.com</p>
       </div>
       <div className={style.line}></div>
       <div className={style.btn}>
