@@ -6,6 +6,7 @@ function Signup() {
   const [data, setdata] = useState({
     username: "",
     password: "",
+    
   });
 
   function handleChange(e) {
