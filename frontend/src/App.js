@@ -10,6 +10,7 @@ function App() {
   
   useEffect(() => {
     dispatch(getProducts())
+    
    }, []);
  
   return (
