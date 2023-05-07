@@ -33,7 +33,7 @@ export const ChangeQuanity = (data, id, val) => (dispatch) => {
 export const AddtoCart = (data, id) => (dispatch) => {
   dispatch({ type: GET_PRODUCTS_LOADING });
   try {
-    let arr = data?.map((e) => (e.id == id ? { ...e, added: true } : e))
+    let arr = data?.map((e) => (e.id == id ? { ...e, added: true } : e));
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: arr });
   } catch (error) {
     dispatch({ type: GET_PRODUCTS_ERROR });
